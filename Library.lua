@@ -1014,7 +1014,8 @@ do
             Type = 'KeyPicker';
             Callback = Info.Callback or function(Value) end;
             ChangedCallback = Info.ChangedCallback or function(New) end;
-            HoldCallback = Info.HoldCallback or function() end; -- New callback for Hold mode
+            HoldCallback = Info.HoldCallback or function() end;
+            ReleasedHoldCallback = Info.ReleasedHoldCallback or function() end;
             SyncToggleState = Info.SyncToggleState or false;
         };
     
@@ -1230,6 +1231,8 @@ do
                 local IsHeld = KeyPicker:GetState()
                 if IsHeld then
                     KeyPicker.HoldCallback()
+                else
+                    KeyPicker.ReleasedHoldCallback()
                 end
             end
         end
